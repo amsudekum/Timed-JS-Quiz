@@ -14,7 +14,7 @@ body {
    font-family: "DM Sans";
 }
 
-.container {
+#starter-container {
     margin: auto;
     padding: 0 10px;
     display: flex;
