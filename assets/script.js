@@ -7,7 +7,7 @@ let questions = [
             'C. It is constant.', 
             'D. It is a constable.',
         ],
-        "correct": 1
+        "correctOption": 1
     },
     {
         "text": 'Which of these data types is a string?',
@@ -17,7 +17,7 @@ let questions = [
             'C. String.', 
             'D. More string.'
         ],
-        "correct": 1
+        "correctOption": 1
     },
 
     {
@@ -25,7 +25,7 @@ let questions = [
         "options": [
             'A. =', 'B. ==', 'C. !==' , 'D. ==='
         ],
-        "correct": 3
+        "correctOption": 3
     },
 
     {
@@ -33,7 +33,7 @@ let questions = [
         "options": [
             'A. callFunction', 'B. callfunction()', 'C. callFunction()', 'D. CALLFUNCTION!'
         ],
-        "correct": 2
+        "correctOption": 2
     },
 
     {
@@ -41,7 +41,7 @@ let questions = [
         "options": [
             'A. A para-meter', 'B. A meter.', 'C. Allows functions to accept inputs.', 'D. Paramaters do not exist.'
         ],
-        "correct": 2
+        "correctOption": 2
     },
 
     {
@@ -49,23 +49,29 @@ let questions = [
         "options": [
             'A. 0', 'B. 0.0', 'C. 1', 'D. 1.0'
         ],
-        "correct": 0
+        "correctOption": 0
     },
 
     {
         "text": 'What does .length do?',
         "options": [
-            'A. Gives the length of your string in px.', 'B. Gives the length of your string in inches.', 'C. Gives the length of all your code.', 'D. Returns the length of an object.'
+            'A. Gives the length of your string in px.', 
+            'B. Gives the length of your string in inches.', 
+            'C. Gives the length of all your code.', 
+            'D. Returns the length of an object.'
         ],
-        "correct": 3
+        "correctOption": 3
     },
 
     {
         "text": 'What does a loop do?',
         "options": [
-            'A. Repeats a set of instructions until a specified condition is met. ', 'B. It loops your code around.', 'C. It resets your code.', 'D. It transform your code into a loop.'
+            'A. Repeats a set of instructions until a specified condition is met. ', 
+            'B. It loops your code around.', 
+            'C. It resets your code.', 
+            'D. It transform your code into a loop.'
         ],
-        "correct": 0
+        "correctOption": 0
     },
 
     {
@@ -73,21 +79,31 @@ let questions = [
         "options": [
             'A. Executes the same code for each element.', 'B. Lists elements of an array. ', 'C. Lists every array in a project.', 'D. It does each and everything it can.'
         ],
-        "correct": 0
+        "correctOption": 0
     }, 
 
     {
         "text": 'What does an Else If statement do?',
         "options": [
-            'A. Complicates our code.', 'B. Gives other developers something fun to read during review.', 'C. Allows for more than two possible incomes in an If statement.', 'D. Makes If statements harder to read. '
+            'A. Complicates our code.', 
+            'B. Gives other developers something fun to read during review.', 
+            'C. Allows for more than two possible incomes in an If statement.', 
+            'D. Makes If statements harder to read. '
         ],
-        "correct": 2
-    }
+        "correctOption": 2
+    },
+
+    // const questions = [
+        // {},
+        // {},
+        // {},
+        // {}
+    // ];
 ];
 
 let currentScore = 0;
 let currentQuestionIndex = 0;
-let currentAnswerIndex = 0;
+let isCorrect;
 
 $('document').ready(() => {
     $('.container').hide();
@@ -104,7 +120,7 @@ $('document').ready(() => {
         submitAnswer(2);
         nextQuestion();
     });
-    $('#questionbutton-4').on('click', () =>{
+    $('#questionbutton-4').on('click', () => {
         submitAnswer(3);
         nextQuestion();
     });
@@ -124,28 +140,35 @@ $('document').ready(() => {
 
 function updateQuestionDisplay() {
     const currentQuestion = questions[currentQuestionIndex];
-    const currentAnswer = questions[currentAnswerIndex];
     $('#question').text(currentQuestion.text);
-    $('#questionbutton-1').text(currentAnswer.options[0])
-    $('#questionbutton-2').text(currentAnswer.options[1])
-    $('#questionbutton-3').text(currentAnswer.options[2])
-    $('#questionbutton-4').text(currentAnswer.options[3])
+    $('#questionbutton-1').text(currentQuestion.options[0])
+    $('#questionbutton-2').text(currentQuestion.options[1])
+    $('#questionbutton-3').text(currentQuestion.options[2])
+    $('#questionbutton-4').text(currentQuestion.options[3])
 };
 
-function submitAnswer(answer) {
-    // check correctness
-    // add to currentScore
-    // if wrong deduct time
-}
+function submitAnswer(currentAnswer) {
+    let currentQuestion = questions[currentQuestionIndex];
+
+    isCorrect = currentAnswer == currentQuestion.correctOption
+    if (isCorrect) {
+        currentScore++ 
+    } else {
+        // deduct time
+    }
+};
 
 function nextQuestion() {
-    // increment currentQuestionIndex
-    // if currentQuestionIndex refers to an index that exists then updateQuestionDisplay
-    // else show the score page
-}
+    currentQuestionIndex++;
+    if (currentQuestionIndex) {
+        updateQuestionDisplay()
+    } else {
+        //show score page
+    }
+        
+};
 
 function submitScoreWithName(name) {
     // save currentScore to highScores (local storage)
     // show the high scores
 }
-
