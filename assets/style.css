@@ -63,6 +63,15 @@ body {
     border-radius: 5px;
 }
 
+#countdowntimer{
+    font-family: "DM SANS";
+    font-size: 18px;
+    color: black;
+    text-align: right;
+    align-items: right;
+    display: flex;
+}
+
 .question{
     font-family: "Poppins";
     font-size: 30px;
@@ -77,4 +86,17 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 10px;
+}
+
+.scorepage{
+    font-family: "DM Sans";
+    font-size:18px;    
+    color: black; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
 }

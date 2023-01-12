@@ -1,4 +1,9 @@
-let questions = [
+let time;
+const startingSeconds = 90;
+let currentScore = 0;
+let currentQuestionIndex = 0;
+let isCorrect;
+const questions = [
     {
         "text": 'What is a const?',
         "options": [
@@ -45,7 +50,7 @@ let questions = [
     },
 
     {
-        "text": '>What is the numbered position in an array?',
+        "text": '>What is the first numbered position in an array?',
         "options": [
             'A. 0', 'B. 0.0', 'C. 1', 'D. 1.0'
         ],
@@ -101,10 +106,6 @@ let questions = [
     // ];
 ];
 
-let currentScore = 0;
-let currentQuestionIndex = 0;
-let isCorrect;
-
 $('document').ready(() => {
     $('.container').hide();
 
@@ -127,15 +128,16 @@ $('document').ready(() => {
 
     $('#start-button') .on('click', () => {
         $('#starter-container').hide();
-        
         currentScore = 0;
         currentQuestionIndex = 0;
+        time = startingSeconds;
         updateQuestionDisplay();
         $('.container').show();
+        $("#countdowntimer").show();
+        $('#scoredisplay').show()
+        setInterval(updateCoundown, 1000);
     })
-    // .on('#start-button').on('click', () => {
-    
-    // })
+   
 });
 
 function updateQuestionDisplay() {
@@ -147,28 +149,43 @@ function updateQuestionDisplay() {
     $('#questionbutton-4').text(currentQuestion.options[3])
 };
 
+function updateCoundown() {
+    const minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    $("#countdowntimer").text(`${minutes} : ${seconds}`);
+    time--;
+};
+
 function submitAnswer(currentAnswer) {
     let currentQuestion = questions[currentQuestionIndex];
 
     isCorrect = currentAnswer == currentQuestion.correctOption
     if (isCorrect) {
-        currentScore++ 
+        currentScore += 10 
     } else {
-        // deduct time
+        time -= 10;
     }
 };
 
 function nextQuestion() {
     currentQuestionIndex++;
-    if (currentQuestionIndex) {
+    if (currentQuestionIndex < questions.length) {
         updateQuestionDisplay()
     } else {
-        //show score page
+        clearInterval();
+        $('starter')
+        $('#scorepage').show();
+        $("#countdowntimer").hide();
+        $('.container').hide();
+        $('#scoredisplay').hide()
     }
+
         
 };
 
 function submitScoreWithName(name) {
+
     // save currentScore to highScores (local storage)
     // show the high scores
 }
