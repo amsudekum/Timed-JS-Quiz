@@ -13,125 +13,51 @@
 
 <body>
 
-     <div class="container">
+     <div id="starter-container">
           <div id="start-page">
                <div>POP QUIZ</div>
-               <span id="instructions">You have 60 seconds to finish this quiz.
-                    Keep in mind, an incorrect answer will knock 10 seconds off the clock.
-                    Good luck!
-              </span>
+               <span id="instructions">
+                    You have 90 seconds to answer 10 questions. 
+                    For every correct answer, you'll get ten points. 
+                    For every incorrect answer, 10 seconds will be deducted from your overall time. 
+                    The quiz ends when the last question is answered OR the timer runs out. 
+               </span>
                <button id="start-button">START</button>
            </div>
      </div> 
     
      <div class="container">
           <div class="questionbox">
+
                <div>
-                    <div class="question">True or False: A const variable can be changed.</div>
+                    <button id="scoredisplay">View Highscores</button>
+                    <div id="countdowntimer"></div>
+               </div>
+
+               <div>
+                    <div id="question" class="question"></div>
                </div>
             
                <div>
-                    <button class="questionbutton">True</button>
-                    <button class="questionbutton">False</button>
-               </div>
-              
-               <div>
-                    <div class="question">Which of these data types is a string?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">Party time.</button>
-                    <button class="questionbutton">'Party time.'</button>
-                    <button class="questionbutton">True</button>
-                    <button class="questionbutton">100</button>
-               </div>
-            
-               <div>
-                    <div class="question">Which operator checks that the value and data types are the same?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">=</button>
-                    <button class="questionbutton">==</button>
-                    <button class="questionbutton">!==</button>
-                    <button class="questionbutton">===</button>
-               </div>
-               
-               <div>
-                    <div class="question">How do you call a functuon?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">partyTime()</button>
-                    <button class="questionbutton">partytime()</button>
-                    <button class="questionbutton">call function partyTime</button>
-                    <button class="questionbutton">PARTYTIME!</button>
-               </div>
-            
-               <div>
-                    <div class="question">True or False: Variables that exist outside of a block can be accessed anywhere.</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">True</button>
-                    <button class="questionbutton">False</button>
-               </div>
-            
-               <div>
-                    <div class="question">What is the numbered position of the first array in an element?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">0</button>
-                    <button class="questionbutton">1</button>
-                    <button class="questionbutton">0.0</button>
-                    <button class="questionbutton">1.0</button>
-               </div>
-            
-               <div>
-                    <div class="question">What does .length do?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">Returns the length of a string in inches.</button>
-                    <button class="questionbutton">Makes your string longer.</button>
-                    <button class="questionbutton">Returns the length of an object.</button>
-                    <button class="questionbutton">Makes your string shorter.</button>
-               </div>
-            
-               <div>
-                    <div class="question">What does a loop do?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">Spins code around.</button>
-                    <button class="questionbutton">Repeats a set of instructions until a specified condition is reached.</button>
-                    <button class="questionbutton">Makes code loopy.</button>
-                    <button class="questionbutton">It's just a loop.</button>
-               </div>
-            
-               <div>
-                    <div class="question">What does .forEach() do?</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">Executes the same code for each element of an array.</button>
-                    <button class="questionbutton">Lists elements of an array.</button>
-                    <button class="questionbutton">Lists all of the arrays in a project.</button>
-                    <button class="questionbutton">It's for everything.</button>
-               </div>
-            
-               <div>
-                    <div class="question">True or False: You can pass an array though a function.</div>
-               </div>
-            
-               <div>
-                    <button class="questionbutton">True</button>
-                    <button class="questionbutton">False</button>
+                    <button id="questionbutton-1" class="questionbutton"></button>
+                    <button id="questionbutton-2" class="questionbutton"></button>
+                    <button id="questionbutton-3" class="questionbutton"></button>
+                    <button id="questionbutton-4" class="questionbutton"></button>
                </div>
           </div>
      </div>
-   
+
+     <div>
+          <hr />
+          <div id="correctness"></div>
+     </div>
+
+     <div id="scorepage" class ="scorepage"></div>
+
+     <script
+          src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
+          integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
+          crossorigin="anonymous"></script>
     <script src="assets/script.js"></script>
 </body>
 </html>
