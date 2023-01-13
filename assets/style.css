@@ -97,6 +97,7 @@ body {
     align-items: center;
     margin: 10px;
     gap: 15px;
+    width: 100%;
 }
 
 #endpage{

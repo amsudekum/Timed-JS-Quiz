@@ -4,13 +4,15 @@ let currentScore = 0;
 let currentQuestionIndex = 0;
 let isCorrect;
 
+
+
 const questions = [
     {
         "text": 'What is a const?',
         "options": [
             'A. A variable.', 
             'B. A variable that cannot be changed.', 
-            'C. It is constant.', 
+            'C. It just is.', 
             'D. It is a constable.',
         ],
         "correctOption": 1
@@ -37,7 +39,7 @@ const questions = [
     {
         "text": 'How do you call a function?',
         "options": [
-            'A. callFunction', 'B. callfunction()', 'C. callFunction()', 'D. CALLFUNCTION!'
+            'A. callFunction', 'B. callfunction?', 'C. callFunction()', 'D. CALLFUNCTION!'
         ],
         "correctOption": 2
     },
@@ -81,9 +83,9 @@ const questions = [
     },
 
     {
-        "text": 'What does .forEach() do?',
+        "text": 'Inside which HTML element do we put the Javascript',
         "options": [
-            'A. Executes the same code for each element.', 'B. Lists elements of an array. ', 'C. Lists every array in a project.', 'D. It does each and everything it can.'
+            'A. <script>', 'B. <js>. ', 'C. <javascript>.', 'D. <insertscript>.'
         ],
         "correctOption": 0
     }, 
@@ -93,7 +95,7 @@ const questions = [
         "options": [
             'A. Complicates our code.', 
             'B. Gives other developers something fun to read during review.', 
-            'C. Allows for more than two possible incomes in an If statement.', 
+            'C. Allows for more than two possible outcomes in an If statement.', 
             'D. Makes If statements harder to read. '
         ],
         "correctOption": 2
@@ -110,8 +112,8 @@ const questions = [
 $('document').ready(() => {
     $('.container').hide();
     $('#endpage').hide();
-    $('correctnessRight').hide()
-    $('correctnessWrong').hide()
+    $('#correctnessRight').hide()
+    $('#correctnessWrong').hide()
 
     $('#questionbutton-1').on('click', () =>{
         submitAnswer(0);
@@ -143,6 +145,10 @@ $('document').ready(() => {
         $('#correctnessWrong').hide()
         setInterval(updateCoundown, 1000);
     })
+
+    $('#saveScoreBtn').on('click', () =>{
+        submitScoreWithName();
+    });
    
 });
 
@@ -185,7 +191,6 @@ function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         updateQuestionDisplay()
-        localStorage.setItem('currentScore', 'score');
     } else {
         clearInterval();
         $('#endpage').show()
@@ -203,48 +208,19 @@ function nextQuestion() {
  }       
 };
 
-function submitScoreWithName(name) {
+function submitScoreWithName() {
+    let highScoreListString = localStorage.getItem('highScoreList');
+    if(!highScoreListString) {
+        highScoreListString = '[]'
+    }
 
+    let highScoreList = JSON.parse(highScoreListString);
+    let highScore = {
+        name: $('#playerInitials').val(),
+        score: currentScore
+    };
 
-   
+    highScoreList.push(highScore);
+    localStorage.setItem('highScoreList', JSON.stringify(highScoreList));
 }
 
-// let playerInitials = $('#playerInitials');
-// let highScoresList = $('highScoresList');
-// const saveScoreBtn = $('#saveScoreBtn');
-// const finalScore = $('#finalScore')
-// const mostRecentScore = localStorage.getItem('currentScore');
-// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
-// const MAX_HIGH_SCORES =5;
-
-
-// finalScore.innerText = mostRecentScore;
-
-
-// $('#playerInitials').on('keyup', () =>{
-//     saveScoreBtn.disabled = !playerInitials.value;
-
-// })
-
-// saveHighScore = (e) => {
-//     e.preventDefault();
-
-// }
-
-// const score = {
-//     score: mostRecentScore,
-//     name: playerInitials.value,
-// };
-
-// highScores.push(score);
-
-// highScores.sort( (a,b) => b.score - a.score);
-// highScores.splice(5);
-
-// localStorage.setItem('highScores', JSON.stringify(highScores));
-
-// highScoresList.innerHTML =
-//     highScores.map( score => {
-//         return <li class='scoreList'>${score.playerInitials} ${score.score}</li>
-//         })
-//         .join("");
