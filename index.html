@@ -30,11 +30,6 @@
           <div class="questionbox">
 
                <div>
-                    <button id="scoredisplay">View Highscores</button>
-                    <div id="countdowntimer"></div>
-               </div>
-
-               <div>
                     <div id="question" class="question"></div>
                </div>
             
@@ -44,15 +39,56 @@
                     <button id="questionbutton-3" class="questionbutton"></button>
                     <button id="questionbutton-4" class="questionbutton"></button>
                </div>
+
+               <div class="scoreTime">
+                    <hr />
+                    <div id="correctnessRight">Correct!</div>
+                    <div id="correctnessWrong">Wrong!</div>
+                    <button id="scoredisplay">View Highscores</button>
+                    <div id="countdowntimer"></div>
+               </div>
+
+
+
           </div>
      </div>
 
      <div>
-          <hr />
-          <div id="correctness"></div>
+          
      </div>
 
-     <div id="scorepage" class ="scorepage"></div>
+     <div id="endpage">
+          <h1 id="highscorespage">High Scores</h1>
+          <form class="form">
+               <div id="playerScore"></div>
+               <input 
+                    type="text" 
+                    name="playerInitials" 
+                    id="playerInitials"                         
+                    placeholder="Player Initials"
+                    
+               />
+               <button 
+                    class="btn" 
+                    type ="submit" 
+                    id="savesScoreBtn"
+                    onclick="saveHighScore(event)"
+               >
+                    Save Score
+               </button>
+
+               <ul id="highScoresList"></ul>
+
+               <button class="btn">
+                    Play Again
+               </button>
+
+
+
+
+          </form>
+
+     </div>
 
      <script
           src="https://code.jquery.com/jquery-3.6.3.slim.min.js"

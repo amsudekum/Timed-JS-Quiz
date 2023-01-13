@@ -15,11 +15,14 @@ body {
 }
 
 #starter-container {
-    margin: auto;
-    padding: 0 10px;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
 #start-page {
@@ -56,10 +59,16 @@ body {
 }
 
 .questionbox{
-    width: 600px;
-    margin: auto;
-    padding: 10px 50px 50px 50px;
-    border: groove;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-style: groove;
     border-radius: 5px;
 }
 
@@ -76,6 +85,7 @@ body {
     font-family: "Poppins";
     font-size: 30px;
     text-align: center;
+    padding-bottom: 20px;
 
 }
 
@@ -86,17 +96,64 @@ body {
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    gap: 15px;
 }
 
-.scorepage{
-    font-family: "DM Sans";
-    font-size:18px;    
+#endpage{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+    border-style: groove;
+    border-radius: 5px;
+}
+
+#highscorespage{
+    font-family: "Poppins";
+    font-size:60px;    
     color: black; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-bottom: 10px;
-    padding-left: 5px;
-    padding-right: 5px;
+    margin-bottom: 30px;
 }
+
+.btn {
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width: 20rem;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #playerInitials {
+    margin-bottom: 1rem;
+    width: 20rem;
+    padding: 1.5rem;
+    font-size: 1.8rem;
+    border: groove;
+    border-radius: 5px;
+    
+  }
+  
+  .scoreTime{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    gap: 50px;
+    padding: 20px;
+    margin: 20px;
+  }

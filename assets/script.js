@@ -3,6 +3,7 @@ const startingSeconds = 90;
 let currentScore = 0;
 let currentQuestionIndex = 0;
 let isCorrect;
+
 const questions = [
     {
         "text": 'What is a const?',
@@ -108,6 +109,9 @@ const questions = [
 
 $('document').ready(() => {
     $('.container').hide();
+    $('#endpage').hide();
+    $('correctnessRight').hide()
+    $('correctnessWrong').hide()
 
     $('#questionbutton-1').on('click', () =>{
         submitAnswer(0);
@@ -126,7 +130,7 @@ $('document').ready(() => {
         nextQuestion();
     });
 
-    $('#start-button') .on('click', () => {
+    $('#start-button').on('click', () => {
         $('#starter-container').hide();
         currentScore = 0;
         currentQuestionIndex = 0;
@@ -135,6 +139,8 @@ $('document').ready(() => {
         $('.container').show();
         $("#countdowntimer").show();
         $('#scoredisplay').show()
+        $('#correctnessRight').hide()
+        $('#correctnessWrong').hide()
         setInterval(updateCoundown, 1000);
     })
    
@@ -163,29 +169,82 @@ function submitAnswer(currentAnswer) {
     isCorrect = currentAnswer == currentQuestion.correctOption
     if (isCorrect) {
         currentScore += 10 
+        $('#correctnessRight').show()
+        $('#correctnessWrong').hide()
     } else {
         time -= 10;
+        $('#correctnessRight').hide()
+        $('#correctnessWrong').show()
     }
 };
+
+  
+     
 
 function nextQuestion() {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         updateQuestionDisplay()
+        localStorage.setItem('currentScore', 'score');
     } else {
         clearInterval();
-        $('starter')
-        $('#scorepage').show();
+        $('#endpage').show()
+        $('#playerScore').show()
+        showScore(currentScore)
         $("#countdowntimer").hide();
         $('.container').hide();
         $('#scoredisplay').hide()
     }
 
-        
+ function showScore() {
+    const playerScore=currentScore;
+    let yourScoreIs= 'Your score is ' + playerScore + '!';
+    $('#playerScore').text(yourScoreIs)
+ }       
 };
 
 function submitScoreWithName(name) {
 
-    // save currentScore to highScores (local storage)
-    // show the high scores
+
+   
 }
+
+// let playerInitials = $('#playerInitials');
+// let highScoresList = $('highScoresList');
+// const saveScoreBtn = $('#saveScoreBtn');
+// const finalScore = $('#finalScore')
+// const mostRecentScore = localStorage.getItem('currentScore');
+// const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
+// const MAX_HIGH_SCORES =5;
+
+
+// finalScore.innerText = mostRecentScore;
+
+
+// $('#playerInitials').on('keyup', () =>{
+//     saveScoreBtn.disabled = !playerInitials.value;
+
+// })
+
+// saveHighScore = (e) => {
+//     e.preventDefault();
+
+// }
+
+// const score = {
+//     score: mostRecentScore,
+//     name: playerInitials.value,
+// };
+
+// highScores.push(score);
+
+// highScores.sort( (a,b) => b.score - a.score);
+// highScores.splice(5);
+
+// localStorage.setItem('highScores', JSON.stringify(highScores));
+
+// highScoresList.innerHTML =
+//     highScores.map( score => {
+//         return <li class='scoreList'>${score.playerInitials} ${score.score}</li>
+//         })
+//         .join("");
