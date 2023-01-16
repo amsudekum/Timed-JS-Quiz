@@ -10,9 +10,9 @@ const questions = [
     {
         "text": 'What is a const?',
         "options": [
-            'A. A variable.', 
-            'B. A variable that cannot be changed.', 
-            'C. It just is.', 
+            'A. A variable.',
+            'B. A variable that cannot be changed.',
+            'C. It just is.',
             'D. It is a constable.',
         ],
         "correctOption": 1
@@ -20,9 +20,9 @@ const questions = [
     {
         "text": 'Which of these data types is a string?',
         "options": [
-            'A. A string.', 
-            'B. "A string."', 
-            'C. String.', 
+            'A. A string.',
+            'B. "A string."',
+            'C. String.',
             'D. More string.'
         ],
         "correctOption": 1
@@ -31,7 +31,7 @@ const questions = [
     {
         "text": 'Which operator checks that the value and data types are the same?',
         "options": [
-            'A. =', 'B. ==', 'C. !==' , 'D. ==='
+            'A. =', 'B. ==', 'C. !==', 'D. ==='
         ],
         "correctOption": 3
     },
@@ -63,9 +63,9 @@ const questions = [
     {
         "text": 'What does .length do?',
         "options": [
-            'A. Gives the length of your string in px.', 
-            'B. Gives the length of your string in inches.', 
-            'C. Gives the length of all your code.', 
+            'A. Gives the length of your string in px.',
+            'B. Gives the length of your string in inches.',
+            'C. Gives the length of all your code.',
             'D. Returns the length of an object.'
         ],
         "correctOption": 3
@@ -74,9 +74,9 @@ const questions = [
     {
         "text": 'What does a loop do?',
         "options": [
-            'A. Repeats a set of instructions until a specified condition is met. ', 
-            'B. It loops your code around.', 
-            'C. It resets your code.', 
+            'A. Repeats a set of instructions until a specified condition is met. ',
+            'B. It loops your code around.',
+            'C. It resets your code.',
             'D. It transform your code into a loop.'
         ],
         "correctOption": 0
@@ -88,24 +88,24 @@ const questions = [
             'A. <script>', 'B. <js>. ', 'C. <javascript>.', 'D. <insertscript>.'
         ],
         "correctOption": 0
-    }, 
+    },
 
     {
         "text": 'What does an Else If statement do?',
         "options": [
-            'A. Complicates our code.', 
-            'B. Gives other developers something fun to read during review.', 
-            'C. Allows for more than two possible outcomes in an If statement.', 
+            'A. Complicates our code.',
+            'B. Gives other developers something fun to read during review.',
+            'C. Allows for more than two possible outcomes in an If statement.',
             'D. Makes If statements harder to read. '
         ],
         "correctOption": 2
     },
 
     // const questions = [
-        // {},
-        // {},
-        // {},
-        // {}
+    // {},
+    // {},
+    // {},
+    // {}
     // ];
 ];
 
@@ -114,16 +114,17 @@ $('document').ready(() => {
     $('#endpage').hide();
     $('#correctnessRight').hide()
     $('#correctnessWrong').hide()
+    $('#highscorespage').hide()
 
-    $('#questionbutton-1').on('click', () =>{
+    $('#questionbutton-1').on('click', () => {
         submitAnswer(0);
         nextQuestion();
     });
-    $('#questionbutton-2').on('click', () =>{
+    $('#questionbutton-2').on('click', () => {
         submitAnswer(1);
         nextQuestion();
     });
-    $('#questionbutton-3').on('click', () =>{
+    $('#questionbutton-3').on('click', () => {
         submitAnswer(2);
         nextQuestion();
     });
@@ -146,10 +147,30 @@ $('document').ready(() => {
         setInterval(updateCoundown, 1000);
     })
 
-    $('#saveScoreBtn').on('click', () =>{
+    $('#saveScoreBtn').on('click', () => {
         submitScoreWithName();
+        $('#endpage').hide();
+        showHighScores()
     });
-   
+
+    $('#scoredisplay').on('click', () => {
+        $('#highscorespage').show();
+        showHighScores()
+        $('.container').hide();
+        $("#countdowntimer").hide();
+        $('#scoredisplay').hide()
+    })
+
+    $('#playAgain').on('click', () => {
+        $('.container').hide();
+        $('#endpage').hide();
+        $('#correctnessRight').hide()
+        $('#correctnessWrong').hide()
+        $('#highscorespage').hide()
+        $('#highscorespage').hide()
+        $('#starter-container').show()
+        setInterval(updateCoundown, 1000);
+    })
 });
 
 function updateQuestionDisplay() {
@@ -174,7 +195,7 @@ function submitAnswer(currentAnswer) {
 
     isCorrect = currentAnswer == currentQuestion.correctOption
     if (isCorrect) {
-        currentScore += 10 
+        currentScore += 10
         $('#correctnessRight').show()
         $('#correctnessWrong').hide()
     } else {
@@ -184,8 +205,8 @@ function submitAnswer(currentAnswer) {
     }
 };
 
-  
-     
+
+
 
 function nextQuestion() {
     currentQuestionIndex++;
@@ -200,17 +221,36 @@ function nextQuestion() {
         $('.container').hide();
         $('#scoredisplay').hide()
     }
-
- function showScore() {
-    const playerScore=currentScore;
-    let yourScoreIs= 'Your score is ' + playerScore + '!';
-    $('#playerScore').text(yourScoreIs)
- }       
 };
+
+function showScore() {
+    const playerScore = currentScore;
+    let yourScoreIs = 'Your score is ' + playerScore + '!';
+    $('#playerScore').text(yourScoreIs)
+}
+
+function showHighScores() {
+    
+    let highScoreListString = localStorage.getItem('highScoreList');
+    if (!highScoreListString) {
+        highScoreListString = '[]'
+    }
+
+    let highScoreList = JSON.parse(highScoreListString);
+
+    highScoreList.sort((a, b) => { return b.score - a.score; });
+
+    for (let i = 0; i < highScoreList.length; i++) {
+        let userInput = highScoreList[i];
+        $('#highScoresList').append('<li>' + userInput.name + ': ' + userInput.score + '</li>')
+    }
+
+    $('#highscorespage').show();
+}
 
 function submitScoreWithName() {
     let highScoreListString = localStorage.getItem('highScoreList');
-    if(!highScoreListString) {
+    if (!highScoreListString) {
         highScoreListString = '[]'
     }
 
