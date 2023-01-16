@@ -9,7 +9,7 @@ The goal for this application was to make a timed Javascript quiz for users to r
 ## Installation
  
 To visit the updated application, follow this link.
- <(https://amsudekum.github.io/Timed-JS-Quiz/)/>
+(https://amsudekum.github.io/Timed-JS-Quiz/)
   
 
 ## Credits
