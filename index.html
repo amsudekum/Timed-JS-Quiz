@@ -20,7 +20,7 @@
                     You have 90 seconds to answer 10 questions. 
                     For every correct answer, you'll get ten points. 
                     For every incorrect answer, 10 seconds will be deducted from your overall time. 
-                    The quiz ends when the last question is answered OR the timer runs out. 
+                    The quiz ends when the last question is answered. 
                </span>
                <button id="start-button">START</button>
            </div>
@@ -28,11 +28,6 @@
     
      <div class="container">
           <div class="questionbox">
-
-               <div>
-                    <button id="scoredisplay">View Highscores</button>
-                    <div id="countdowntimer"></div>
-               </div>
 
                <div>
                     <div id="question" class="question"></div>
@@ -44,20 +39,54 @@
                     <button id="questionbutton-3" class="questionbutton"></button>
                     <button id="questionbutton-4" class="questionbutton"></button>
                </div>
+
+               <div class="scoreTime">
+                    <hr />
+                    <div id="correctnessRight">Correct!</div>
+                    <div id="correctnessWrong">Wrong!</div>
+                    <button id="scoredisplay">View Highscores</button>
+                    <div id="countdowntimer"></div>
+               </div>
           </div>
      </div>
 
      <div>
-          <hr />
-          <div id="correctness"></div>
+          
      </div>
 
-     <div id="scorepage" class ="scorepage"></div>
+     <div id="endpage">
+          <h1 class="header">Good Job!</h1>
+          <div class="form">
+               <div id="playerScore"></div>
+               <input 
+                    type="text" 
+                    name="playerInitials" 
+                    id="playerInitials"                         
+                    placeholder="Player Initials"
+                    
+               />
+               <button 
+                    class="btn" 
+                    id="saveScoreBtn"
+               >
+                    Save Score
+               </button>
+          </div>
+     </div>
+
+     <div id="highscorespage">
+          <h1 class="header">Highscores</h1>
+          <ul id="highScoresList"></ul>
+
+          <button id='playAgain' class="btn">
+               Play Again
+          </button>
+     </div>
 
      <script
           src="https://code.jquery.com/jquery-3.6.3.slim.min.js"
           integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo="
           crossorigin="anonymous"></script>
-    <script src="assets/script.js"></script>
+     <script src="assets/script.js"></script>
 </body>
 </html>
