@@ -1,8 +1,8 @@
 README.md
  
-# Horiseon Accessibility Update: Challenge 1
+# Timed Javascript Pop Quiz
  
-## Making the Horiseon Homepage more accessible.
+## A timed quiz to test users' knowledge
  
 The goal for this application was to make a timed Javascript quiz for users to review their knowledge on the language. Users have 90 seconds to complete the timed quiz and upon completion, they will be able to compare their scores locally with their friends.
  
